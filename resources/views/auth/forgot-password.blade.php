@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - Green University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
+        .dot-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+        html, body { max-width: 100%; }
+body { min-height: 100vh; }
+::-webkit-scrollbar { display: none; }
+body { scrollbar-width: none; }
+        }
+
+    </style>
+</head>
+<body class="min-h-screen bg-[#1b804e] flex flex-col justify-center items-center px-4 py-8 relative overflow-hidden">
+    <!-- System Notifications & Alerts Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-8 mt-4 space-y-3">
+
+    <!-- 1. Form Validation Errors ($errors) -->
+                @if ($errors->any())
+                <div class="bg-rose-50 border border-rose-200 text-rose-800 rounded-2xl p-3 sm:p-4 shadow-sm flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-rose-900 mb-1">Action Required</h4>
+                        <ul class="list-disc list-inside text-xs font-medium space-y-0.5 text-rose-700 break-words">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endif
+
+                <!-- 2. Flash Session Error -->
+                @if (session('error'))
+                <div class="bg-rose-50 border border-rose-200 text-rose-800 rounded-2xl p-3 sm:p-4 shadow-sm flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </div>
+                        <p class="text-xs font-semibold text-rose-900 break-words">{{ session('error') }}</p>
+                    </div>
+                    <button type="button" onclick="this.parentElement.remove()" class="text-rose-400 hover:text-rose-600 shrink-0" aria-label="Dismiss">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                @endif
+
+                <!-- 3. Flash Session Success -->
+                @if (session('success'))
+                <div class="bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-2xl p-3 sm:p-4 shadow-sm flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-[#1b804e] flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <p class="text-xs font-semibold text-emerald-900 break-words">{{ session('success') }}</p>
+                    </div>
+                    <button type="button" onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-600 shrink-0" aria-label="Dismiss">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                @endif
+
+</div>
+    <div class="absolute top-12 left-12 w-48 h-48 dot-pattern pointer-events-none opacity-70 hidden md:block"></div>
+    <div class="absolute -bottom-10 -right-10 w-64 h-64 dot-pattern pointer-events-none opacity-50 hidden md:block"></div>
+
+    <div class="w-full max-w-md my-auto relative z-10">
+        <div class="flex justify-center mb-6">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-white uppercase bg-white/10 backdrop-blur-md border border-white/20 shadow-sm">
+                PASSWORD RECOVERY
+            </span>
+        </div>
+
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight">Forgot Password?</h1>
+            <p class="text-white/80 text-sm mt-2 font-medium">Enter your email to receive an OTP code</p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-2xl shadow-emerald-950/20">
+            @if (session('status'))
+                <div class="mb-4 text-xs font-semibold text-emerald-800 bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <form action="{{ route('send_otp') }}" method="POST" class="space-y-5">
+                @csrf
+                <div>
+                    <label class="block text-xs font-bold tracking-wide uppercase text-gray-700 mb-2" for="email">Your Email Address</label>
+                    <input type="email" name="email" id="otp_input" value="{{ old('email') }}" placeholder="student@university.edu" required class="w-full px-4 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1b804e]">
+                    @error('email') <span class="text-xs text-red-600 mt-1.5 block font-medium">{{ $message }}</span> @enderror
+                </div>
+
+                <button type="submit" id="submit_btn" class="w-full py-4 px-6 rounded-full bg-[#1b804e] hover:bg-[#15673e] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#1b804e]/25 transition duration-200 flex items-center justify-center gap-2">
+                    Send Verification Code
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                <a href="{{ route('login') }}" class="text-xs font-bold text-[#1b804e] hover:underline inline-flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                    Back to Login
+                </a>
+            </div>
+        </div>
+    </div>
+    @if(session('retry_after'))
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let timeLeft = {{ session('retry_after') }};
+        const submitBtn = document.getElementById('submit_btn');
+        const otpInput = document.getElementById('otp_input');
+        const originalBtnText = submitBtn.innerText;
+
+        submitBtn.disabled = true;
+        if (otpInput) {
+            otpInput.disabled = true;
+        }
+
+        const timer = setInterval(function () {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            let formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+            submitBtn.innerText = `Try again after ${minutes}:${formattedSeconds}`;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                submitBtn.disabled = false;
+                if (otpInput) {
+                    otpInput.disabled = false;
+                }
+                submitBtn.innerText = originalBtnText;
+            }
+        }, 1000);
+    });
+</script>
+@endif
+</body>
+</html>
