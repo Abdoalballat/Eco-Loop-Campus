@@ -112,13 +112,13 @@ class LoginController extends Controller
             {
                 return back()->withErrors('Wrong email or password.')->onlyInput('email');
                 
-            }
-        $request->session()->regenerate();
-        $id =Auth::user()->id;
-        
-        if(Auth::user()->role =='admin')
-            {
-            return redirect()->route('dashboard',)->with('Welcome'.''.Auth::user()->name);
+                }
+                $request->session()->regenerate();
+                $id =Auth::user()->id;
+                
+                if(Auth::user()->role =='admin')
+                    {
+                        return redirect()->route('dashboard')->with('Welcome'.''.Auth::user()->name);
             }
         elseif(Auth::user()->role =='employee'||Auth::user()->role =='employee')
             {

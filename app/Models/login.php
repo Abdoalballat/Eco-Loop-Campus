@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class login extends Authenticatable
 {
-        use HasUuids;//,LogsActivity ,CausesActivity ;
+        use HasUuids ,HasFactory;//,LogsActivity ,CausesActivity ;
         protected $table ='login';
         protected $fillable =[
                 'university_id', //student
