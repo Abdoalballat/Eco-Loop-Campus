@@ -42,7 +42,7 @@ class LoginController extends Controller
         $validated_data=$request->validate([
             'name'=>'required|string',
             'email'=>'required|string|email'
-            ,'role'=>'required|string',
+            ,'role'=>'string',
             'zone' =>'string'
             ]);
             
