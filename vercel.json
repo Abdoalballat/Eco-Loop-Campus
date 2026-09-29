@@ -21,6 +21,8 @@
     }
   ],
   "env": {
+    "APP_URL": "https://eco-loop-campus.vercel.app",
+    "ASSET_URL": "https://eco-loop-campus.vercel.app",
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
     "APP_PACKAGES_CACHE": "/tmp/packages.php",
