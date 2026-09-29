@@ -33,7 +33,7 @@ class ForgetPasswordController extends Controller
         $validated_email =$request->validate([
         'email'=>'string|required|email'
         ]);
-        $email = login::where('email',$validated_email['email'])->firstOrFail();
+        $email = login::where('email',$validated_email['email'])->first();
         // ------------------------------------------rate--------------------
         $throttleKey ='send-otp' . $request->ip();
         if(RateLimiter::tooManyAttempts($throttleKey,3))
