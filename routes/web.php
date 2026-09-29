@@ -10,15 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MaterialsController;
 use App\Http\Controllers\StudentDashboardController;
 use Illuminate\Support\Facades\Route;
-Route::any('/{any}', function (\Illuminate\Http\Request $request) {
-    return response()->json([
-        'uri' => $request->path(),
-        'full_url' => $request->fullUrl(),
-        'method' => $request->method(),
-        'server_request_uri' => $_SERVER['REQUEST_URI'] ?? null,
-        'server_script_name' => $_SERVER['SCRIPT_NAME'] ?? null,
-    ]);
-})->where('any', '.*');
+
 
 Route::get('/', function () {
     return redirect()->route('login');
