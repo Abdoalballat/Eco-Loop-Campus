@@ -43,10 +43,12 @@ class ForgetPasswordController extends Controller
             }
             RateLimiter::hit($throttleKey,60);
             // -----------------------------------end rate------------------------------
-        if($email)
+        if(!$email)
                 {
-
-                    $otp = rand(111111,999999);
+                    return redirect()->route('forget_page')->with('error','wrong email');
+                }
+        else{
+            $otp = rand(111111,999999);
                     $otp_expires_at =Carbon::now()->addMinutes(10);
                     $email->update([
                         'otp'=>$otp,
@@ -54,9 +56,6 @@ class ForgetPasswordController extends Controller
                     ]);
                     Mail::to($email->email)->send(new otp_mail($otp));
                     return redirect()->route('show_verify_otp_page',['email'=>$email->email])->with('success','Otp has been sent');
-                }
-        else{
-            return redirect()->route('login.page')->with('Faield','wrong email');
         }
     }
     public function verify_otp(Request $request)
