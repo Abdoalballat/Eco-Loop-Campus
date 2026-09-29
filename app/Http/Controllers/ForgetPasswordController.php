@@ -28,36 +28,36 @@ class ForgetPasswordController extends Controller
             return view('auth.verify-otp');
     }
     public function send_otp(Request $request)
-    {
-        
-        $validated_email =$request->validate([
-        'email'=>'string|required|email'
-        ]);
-        $email = login::where('email',$validated_email['email'])->first();
-        // ------------------------------------------rate--------------------
-        $throttleKey ='send-otp' . $request->ip();
-        if(RateLimiter::tooManyAttempts($throttleKey,3))
-            {
-                $seconds=RateLimiter::availableIn($throttleKey);
-                return back()->with('Failed' ,'Try Again After 2 Minuts')->with('retry_after', $seconds);
-            }
-            RateLimiter::hit($throttleKey,60);
-            // -----------------------------------end rate------------------------------
-        if(!$email)
-                {
-                    return redirect()->route('forget_page')->with('error','wrong email');
-                }
-        else{
-            $otp = rand(111111,999999);
-                    $otp_expires_at =Carbon::now()->addMinutes(10);
-                    $email->update([
-                        'otp'=>$otp,
-                        'otp_expires_at'=>$otp_expires_at
-                    ]);
-                    Mail::to($email->email)->send(new otp_mail($otp));
-                    return redirect()->route('show_verify_otp_page',['email'=>$email->email])->with('success','Otp has been sent');
-        }
+{
+    $validated_email = $request->validate([
+        'email' => 'string|required|email'
+    ]);
+
+    $email = login::where('email', $validated_email['email'])->first();
+
+    if (!$email) {
+        return redirect()->route('forget_page')->with('error', 'wrong email');
     }
+
+    $throttleKey = 'send-otp' . $request->ip();
+    if (RateLimiter::tooManyAttempts($throttleKey, 3)) {
+        $seconds = RateLimiter::availableIn($throttleKey);
+        return back()->with('Failed', 'Try Again After 2 Minuts')->with('retry_after', $seconds);
+    }
+    RateLimiter::hit($throttleKey, 60);
+
+    $otp = rand(111111, 999999);
+    $otp_expires_at = Carbon::now()->addMinutes(10);
+    
+    $email->update([
+        'otp' => $otp,
+        'otp_expires_at' => $otp_expires_at
+    ]);
+
+    Mail::to($email->email)->send(new otp_mail($otp));
+
+    return redirect()->route('show_verify_otp_page', ['email' => $email->email])->with('success', 'Otp has been sent');
+}
     public function verify_otp(Request $request)
     {
         $validated_data = $request->validate([
