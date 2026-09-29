@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/store', [ContainerTelemetryController::class,'store']);
+Route::post('/waste-telemetry', [ContainerTelemetryController::class,'store']);
 
 // Route::post('/login/register',[LoginController::class,'register'])->name('register');
 
