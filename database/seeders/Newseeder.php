@@ -16,14 +16,13 @@ class Newseeder extends Seeder
      */
     public function run(): void
     {
-        containers::create([
-                                                    'id' => '2',
-                    'latitude' => '31.44756569',
-                    'longitude' => '31.48767050',
-                    'fill_level' => '50',
-                    'status' => 'active',
-                    'serial_number' => '5e-6f-4d-8a',
-                    'location_name' => 'قدام كلية حقوق',
+        login::create([
+                    'id' => (string) \Illuminate\Support\Str::orderedUuid(),
+                'name' => 'student',
+                'university_id'=>'123456',
+                'email' => 'abdelrhmanarfatwork@gmail.com',
+                'password' => Hash::make('abdelrhmanarfatwork@gmail.com'),
+                'role' => 'student',
                 ]);
     }
 }
