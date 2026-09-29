@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\wasteDeposited;
 use App\Listeners\LogWasteDepositActivity;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        URL::forceScheme('https');
         Event::listen(
             wasteDeposited::class,
             LogWasteDepositActivity::class
