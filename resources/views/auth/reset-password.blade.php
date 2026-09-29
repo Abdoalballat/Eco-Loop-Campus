@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-[#1b804e] flex flex-col justify-center items-center px-4 py-8 relative">
+<body class="min-h-screen min-h-[100dvh] bg-[#1b804e] relative">
 
     <div class="absolute top-12 left-12 w-48 h-48 dot-pattern pointer-events-none opacity-70 hidden md:block"></div>
     <div class="absolute -bottom-10 -right-10 w-64 h-64 dot-pattern pointer-events-none opacity-50 hidden md:block"></div>

@@ -18,10 +18,10 @@ class Newseeder extends Seeder
     {
         login::create([
                     'id' => (string) \Illuminate\Support\Str::orderedUuid(),
-                'name' => 'student',
-                'university_id'=>'123456',
-                'email' => 'abdelrhmanarfatwork@gmail.com',
-                'password' => Hash::make('abdelrhmanarfatwork@gmail.com'),
+                'name' => 'adel_student',
+                'email' => 'adel_student@gmail.com',
+                'university_id'=>'000000',
+                'password' => Hash::make('adel_student@gmail.com'),
                 'role' => 'student',
                 ]);
     }
