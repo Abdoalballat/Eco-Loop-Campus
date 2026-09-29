@@ -38,14 +38,15 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        dd(['data'=>'data']);
         
         $validated_data=$request->validate([
             'name'=>'required|string',
             'email'=>'required|string|email'
             ,'role'=>'required|string',
             'zone' =>'string'
-        ]);
+            ]);
+            
+            dd(['data'=>$validated_data]);
         $final_data =[
         'name'=> $validated_data['name'],
         'email'=> $validated_data['email'],
