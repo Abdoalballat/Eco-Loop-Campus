@@ -16,10 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias(['role'=> role_model::class]);
         $middleware->trustProxies(at: '*');
-        $middleware->validateCsrfTokens(except: [
-        'waste-telemetry',
-        'api/waste-telemetry',
-    ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

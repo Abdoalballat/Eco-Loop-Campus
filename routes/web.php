@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\CatalogController;
-use App\Http\Controllers\ContainerTelemetryController;
+use App\Http\Controllers\Api\ContainerTelemetryController;
 use App\Http\Controllers\ContainersController;
 use App\Http\Controllers\employeeDash;
 use App\Http\Controllers\ForgetPasswordController;
@@ -81,4 +81,3 @@ Route::controller(LoginController::class)->group(function(){            // start
     Route::post('/login/logout','logout')->name('logout');
 });
 
-Route::post('/waste-telemetry', [ContainerTelemetryController::class, 'store']);
