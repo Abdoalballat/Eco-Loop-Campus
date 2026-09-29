@@ -52,7 +52,7 @@ class ForgetPasswordController extends Controller
                         'otp'=>$otp,
                         'otp_expires_at'=>$otp_expires_at
                     ]);
-                    // Mail::to($email->email)->send(new otp_mail($otp));
+                    Mail::to($email->email)->send(new otp_mail($otp));
                     return redirect()->route('show_verify_otp_page',['email'=>$email->email])->with('success','Otp has been sent');
                 }
         else{
