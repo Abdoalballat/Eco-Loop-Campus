@@ -38,6 +38,7 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
+        dd(['data'=>'data']);
         
         $validated_data=$request->validate([
             'name'=>'required|string',
@@ -50,7 +51,6 @@ class LoginController extends Controller
         'email'=> $validated_data['email'],
         'role'=> $validated_data['role'],
         'password'=>Hash::make(rand(11111111,99999999))];
-        dd($final_data);
         $user = login::create($final_data);
         return redirect()->route('employee_index')->with('success','User Has been Adedd');
     }
