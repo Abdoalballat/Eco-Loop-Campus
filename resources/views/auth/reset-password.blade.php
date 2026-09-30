@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { style:"display: flex;" font-family: 'Plus Jakarta Sans', sans-serif; }
         .dot-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px);
             background-size: 20px 20px;
@@ -33,7 +33,7 @@
             <p class="text-white/80 text-sm mt-2 font-medium">Create a new secure password for your account</p>
         </div>
 
-        <div class="bg-white rounded-3xl p-8 shadow-2xl shadow-emerald-950/20">
+        <div style=" justify-content:center" ; class="bg-white rounded-3xl p-8 shadow-2xl shadow-emerald-950/20">
             <form action="{{ route('reset_pass') }}" method="POST" class="space-y-4">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token ?? request()->route('token') }}">
